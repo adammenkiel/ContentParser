@@ -6,7 +6,7 @@ using CsvHelper;
 
 public class CSVParser : IParser
 {
-    public ParsedInfo parse(string content)
+    public ParsedInfo Parse(string content)
     {
         try {
             using var reader = new StringReader(content);

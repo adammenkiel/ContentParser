@@ -1,13 +1,12 @@
 using System.Text.Json;
 
-public class ParsedInfo
+public class ParsedInfo(JsonDocument JsonContent, int Count)
 {
-    public JsonDocument JsonContent { get; }
-    public int count { get; }
+    public JsonDocument JsonContent { get; } = JsonContent;
+    public int Count { get; } = Count;
 
-    public ParsedInfo(JsonDocument JsonContent, int count)
+    public string GetContentString()
     {
-        this.JsonContent = JsonContent;
-        this.count = count;
+        return JsonSerializer.Serialize(JsonContent);
     }
 }

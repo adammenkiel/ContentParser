@@ -3,7 +3,7 @@ using System.Text.Json;
 
 public class JsonParser : IParser
 {
-    public ParsedInfo parse(string content)
+    public ParsedInfo Parse(string content)
     {
         try {
             return new ParsedInfo(

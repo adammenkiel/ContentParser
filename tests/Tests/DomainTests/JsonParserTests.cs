@@ -10,7 +10,7 @@ public class JsonParserTests
         JsonParser sut = new();
 
         //Act
-        sut.parse("{\"text\": \"Hello World\"}")
+        sut.Parse("{\"text\": \"Hello World\"}")
         .JsonContent
         .RootElement
         .TryGetProperty("text", out JsonElement jsonElement);
@@ -27,7 +27,7 @@ public class JsonParserTests
         
         //Act & Assert
         Assert.Throws<ParseException>(() => {
-            sut.parse("NOT JSON$u%#@{}{}{}}}}}{{{{{}}}}}");
+            sut.Parse("NOT JSON$u%#@{}{}{}}}}}{{{{{}}}}}");
         });
     }
 
@@ -45,7 +45,7 @@ public class JsonParserTests
         Console.WriteLine("Start");
         
         //Act
-        sut.parse(LongJson);
+        sut.Parse(LongJson);
         Console.WriteLine("End");
     }*/
 }
