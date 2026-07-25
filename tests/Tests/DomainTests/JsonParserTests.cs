@@ -6,16 +6,46 @@ public class JsonParserTests
     [Fact]
     public void ParseJsonTest()
     {
-        JsonParser jsonParser = new();
-        ParsedInfo parsed = jsonParser.parse("{\"text\": \"Hello world\"}");
-        var RootElement = parsed.JsonContent.RootElement;
-        RootElement.TryGetProperty("text", out JsonElement jsonElement);
-        Console.WriteLine(jsonElement.GetString());
+        //Arrange
+        JsonParser sut = new();
+
+        //Act
+        sut.parse("{\"text\": \"Hello World\"}")
+        .JsonContent
+        .RootElement
+        .TryGetProperty("text", out JsonElement jsonElement);
+        
+        //Assert
+        Assert.Equal("Hello World", jsonElement.GetString());
     }
 
     [Fact]
     public void ParseInvaildJsonTest()
     {
+        //Arrange
+        JsonParser sut = new();
         
+        //Act & Assert
+        Assert.Throws<ParseException>(() => {
+            sut.parse("NOT JSON$u%#@{}{}{}}}}}{{{{{}}}}}");
+        });
     }
+
+    /*
+    [Fact]
+    public void ParseLongJsonTest() // TODO: End it
+    {
+        //Arrange
+        JsonParser sut = new();
+        string LongJson = "{\"text\": \"Example Json\"}";
+        for(int i = 0; i < 100000; i++)
+        {
+            LongJson = "{\"List\":[" + LongJson + "]}";
+        }
+        Console.WriteLine("Start");
+        
+        //Act
+        sut.parse(LongJson);
+        Console.WriteLine("End");
+    }*/
 }

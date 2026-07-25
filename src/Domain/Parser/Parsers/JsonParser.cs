@@ -5,9 +5,14 @@ public class JsonParser : IParser
 {
     public ParsedInfo parse(string content)
     {
-        return new ParsedInfo(
-            JsonDocument.Parse(content),
-            0
-        );
+        try {
+            return new ParsedInfo(
+                JsonDocument.Parse(content),
+                0
+            );
+        } catch
+        {
+            throw new ParseException();
+        }
     }
 }

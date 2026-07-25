@@ -8,30 +8,35 @@ public class CSVParser : IParser
 {
     public ParsedInfo parse(string content)
     {
-        using var reader = new StringReader(content);
-        using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
-        csv.Read();
-        csv.ReadHeader();
-        var names = csv.HeaderRecord;
-        
-        JsonArray array = [];
+        try {
+            using var reader = new StringReader(content);
+            using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
+            csv.Read();
+            csv.ReadHeader();
+            var names = csv.HeaderRecord;
 
-        if(names == null)
-            throw new Exception();
+            JsonArray array = [];
 
-        while(csv.Read())
-        {
-            JsonObject line = [];
-            foreach(var recordName in names)
+            if(names == null)
+                throw new Exception();
+
+            while(csv.Read())
             {
-                var RValue = csv.GetField(recordName);
-                line[recordName] = RValue;
+                JsonObject line = [];
+                foreach(var recordName in names)
+                {
+                    var RValue = csv.GetField(recordName);
+                    line[recordName] = RValue;
+                }
+                array.Add(line);
             }
-            array.Add(line);
+            return new ParsedInfo(
+                JsonSerializer.SerializeToDocument(array),
+                0
+            );
+        } catch
+        {
+            throw new ParseException();
         }
-        return new ParsedInfo(
-            JsonSerializer.SerializeToDocument(array),
-            0
-        );
     }
 }
