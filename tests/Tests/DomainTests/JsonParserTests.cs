@@ -31,21 +31,24 @@ public class JsonParserTests
         });
     }
 
-    /*
+    
+    // TODO: Correct it
     [Fact]
-    public void ParseLongJsonTest() // TODO: End it
+    public void ParseLongJsonTest() 
     {
         //Arrange
         JsonParser sut = new();
         string LongJson = "{\"text\": \"Example Json\"}";
-        for(int i = 0; i < 100000; i++)
+        for(int i = 0; i < 1000; i++)
         {
             LongJson = "{\"List\":[" + LongJson + "]}";
         }
-        Console.WriteLine("Start");
         
-        //Act
-        sut.Parse(LongJson);
-        Console.WriteLine("End");
-    }*/
+        //Act & Assert
+        Assert.Throws<ParseException>(() => { 
+            // I need to correct it, StackOverflowException/Max Depth Exception detection
+            // is required because of execution time!
+            sut.Parse(LongJson);
+        });
+    }
 }

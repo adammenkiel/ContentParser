@@ -16,7 +16,8 @@ public class CSVParser : IParser
             var names = csv.HeaderRecord;
 
             JsonArray array = [];
-
+            int Count = 0;
+            
             if(names == null)
                 throw new Exception();
 
@@ -29,10 +30,11 @@ public class CSVParser : IParser
                     line[recordName] = RValue;
                 }
                 array.Add(line);
+                Count++;
             }
             return new ParsedInfo(
                 JsonSerializer.SerializeToDocument(array),
-                0
+                Count
             );
         } catch
         {
