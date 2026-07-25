@@ -1,5 +1,7 @@
 
-interface IParser<T>
+using System.Text.Json;
+
+public interface IParser
 {
-    T parse(string content);
+    public ParsedInfo parse(string text);
 }
