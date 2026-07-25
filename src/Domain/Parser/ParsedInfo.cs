@@ -1,6 +1,7 @@
 using System.Text.Json;
 
-public class ParsedInfo(JsonDocument JsonContent, int Count)
+// JsonDocument require dispose execution so ParsedInfo is IDisposable!
+public class ParsedInfo(JsonDocument JsonContent, int Count) : IDisposable
 {
     public JsonDocument JsonContent { get; } = JsonContent;
     public int Count { get; } = Count;
@@ -8,5 +9,10 @@ public class ParsedInfo(JsonDocument JsonContent, int Count)
     public string GetContentString()
     {
         return JsonSerializer.Serialize(JsonContent);
+    }
+
+    public void Dispose()
+    {
+        JsonContent?.Dispose();
     }
 }
