@@ -1,5 +1,7 @@
 using System.Text.Json;
 
+
+//TODO: Test big JSONs and CSV formats
 public class CSVParserTests
 {
     [Fact]

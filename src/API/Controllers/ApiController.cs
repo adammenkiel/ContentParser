@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class ApiController : ControllerBase
 {
-
     private readonly IMediator _mediator;
 
     public ApiController(IMediator mediator)
@@ -17,7 +16,16 @@ public class ApiController : ControllerBase
     public async Task<IActionResult> Parse([FromBody] ParseQuery Query)
     {
         var result = await _mediator.Send(Query);
+        var obj = result.GetValue();
         
-        return Ok(Query.Type + " - " + Query.Content);
+        if(obj is ParseResponse response)
+        {
+            return Ok(response);   
+        }
+        if(obj is ExceptionResponse errorResponse)
+        {
+            return BadRequest(errorResponse);
+        }
+        return StatusCode(500);
     }
 }
