@@ -16,7 +16,7 @@ public class ApiController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Parse([FromBody] ParseQuery Query)
     {
-        var result = _mediator.Send(Query);
+        var result = await _mediator.Send(Query);
         
         return Ok(Query.Type + " - " + Query.Content);
     }
