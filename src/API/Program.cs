@@ -1,10 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+
+builder.Services.AddSingleton<ParserRegistry>();
+builder.Services.AddScoped<ParseService>();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(
+    typeof(ParseQueryHandler).Assembly)
+);
 
 var app = builder.Build();
 
