@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class ApiController : ControllerBase
 {
-    //[FromBody] string PageBody
     [HttpPost]
-    public async Task<IActionResult> Parse()
+    public async Task<IActionResult> Parse([FromBody] ParseQuery Query)
     {
-        return Ok("Accepted");
+        return Ok(Query.Type + " - " + Query.Content);
     }
 }
