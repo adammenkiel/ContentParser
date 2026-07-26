@@ -24,15 +24,14 @@ public class JsonParser : IParser
                 JsonValueKind.Object => 1,
                 _ => 1
             };
-            //Count Document
 
             return new ParsedInfo(
                 Document,
                 Count
             );
-        } catch
+        } catch (Exception exception)
         {
-            throw new ParseException();
+            throw new ParseException(exception.Message, exception);
         }
     }
 }
