@@ -1,7 +1,7 @@
 
 public class ParseResponse
 {
-    public bool Status { get; } = true;
+    public string Status { get; } = "success";
     public int Count { get; } = 0;
     public string EncodedContext { get; } = string.Empty;
 

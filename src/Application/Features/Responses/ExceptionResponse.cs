@@ -1,7 +1,7 @@
 
 public class ExceptionResponse
 {
-    public bool success = false;
+    public string Status { get; } = "failed";
     public string ErrorMessage { get; }
     public ExceptionResponse(string ErrorMessage)
     {
