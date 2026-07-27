@@ -3,12 +3,20 @@ using System.Text.Json;
 
 public class JsonParser : IParser
 {
+
+    private int JsonMaxDepth = 256;
+    public JsonParser() {}
+
+    public JsonParser(int JsonMaxDepth)
+    {
+        this.JsonMaxDepth = JsonMaxDepth;
+    }
     public ParsedInfo Parse(string content)
     {
         try {
             var JsonOptions = new JsonDocumentOptions
             {
-              MaxDepth = 256  // Move into configuration
+              MaxDepth = JsonMaxDepth  // Move into configuration
             };
             JsonDocument Document = JsonDocument.Parse(content, JsonOptions);
             /*

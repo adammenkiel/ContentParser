@@ -1,11 +1,20 @@
 
+using Xunit.Sdk;
+
 public class ParserRegistryTests()
 {
+
+    public AppConfiguration GetAppConfiguration()
+    {
+        AppConfiguration appConfiguration = new AppConfiguration();
+        return appConfiguration;
+    }
+
     [Fact]
     public void ChooseCorrectParserTest()
     {
         //Arrange
-        ParserRegistry sut = new();
+        ParserRegistry sut = new(GetAppConfiguration());
 
         //Act
         IParser parser = sut.GetParser("INTERNAL_JSON");
@@ -18,7 +27,7 @@ public class ParserRegistryTests()
     public void ChooseIncorrectParserTest()
     {
         //Arrange
-        ParserRegistry sut = new();
+        ParserRegistry sut = new(GetAppConfiguration());
 
         //Act & Assert
         Assert.Throws<ArgumentException>(

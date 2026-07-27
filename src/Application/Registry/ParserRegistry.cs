@@ -1,16 +1,18 @@
 
 public class ParserRegistry
 {
+    private AppConfiguration Configuration;
     private Dictionary<ParserType, IParser> Parsers = new Dictionary<ParserType, IParser>();
 
     private void LoadParsers()
     {
         Parsers.Add(ParserType.CSV, new CSVParser());
-        Parsers.Add(ParserType.INTERNAL_JSON, new JsonParser());
+        Parsers.Add(ParserType.INTERNAL_JSON, new JsonParser(Configuration.MaxDepth));
     }
     
-    public ParserRegistry()
+    public ParserRegistry(AppConfiguration Configuration)
     {
+        this.Configuration = Configuration;
         LoadParsers();
     }
 

@@ -1,8 +1,17 @@
 var builder = WebApplication.CreateBuilder(args);
 
+AppConfiguration? config = 
+    builder.Configuration.GetSection("AppConfiguration").Get<AppConfiguration>();
+if(config == null)
+{
+    Console.WriteLine("Program requires Parser configuration!");
+    return;
+}
+
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 
+builder.Services.AddSingleton(config);
 builder.Services.AddSingleton<ParserRegistry>();
 builder.Services.AddScoped<ParseService>();
 

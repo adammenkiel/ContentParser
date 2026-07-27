@@ -1,12 +1,16 @@
 
 using System.Text;
 
-public class ParseService(ParserRegistry Registry)
+public class ParseService(ParserRegistry Registry, AppConfiguration configuration)
 {
     private readonly ParserRegistry Registry = Registry;
 
     public ParsedInfo ParseEncodedContent(string ContentType, string Content)
     {
+        if(Content.Length > configuration.MaxContentSize)
+        {
+            throw new MaxContentLengthException("Content is too long!");
+        } 
         byte[] EncodedContextBytes = Convert.FromBase64String(Content);
         string EncodedString = Encoding.UTF8.GetString(EncodedContextBytes);
         return ParseDecodedContent(ContentType, EncodedString);
