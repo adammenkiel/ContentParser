@@ -21,11 +21,12 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
+
+app.Urls.Add("http://0.0.0.0:5036");
 
 app.UseHttpsRedirection();
 
