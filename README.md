@@ -27,7 +27,7 @@ Description: Decoding fixed at request type of content from Base64 format, parsi
 Requires:
 
 - type: Type of content, supported formats: ``INTERNAL_JSON``, ``CSV``
-- content: Base64 encoded content, at CSV format if content type is CSV or JSON format if content type is INTERNAL_JSON.
+- content: Base64 encoded content, at CSV format if content type is ``CSV`` or JSON format if content type is ``INTERNAL_JSON``.
 
 Returns:
 
