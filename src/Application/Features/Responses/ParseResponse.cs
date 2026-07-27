@@ -3,11 +3,11 @@ public class ParseResponse
 {
     public string Status { get; } = "success";
     public int Count { get; } = 0;
-    public string EncodedContext { get; } = string.Empty;
+    public string EncodedContent { get; } = string.Empty;
 
-    public ParseResponse(int Count, string EncodedContext)
+    public ParseResponse(int Count, string EncodedContent)
     {
         this.Count = Count;
-        this.EncodedContext = EncodedContext;
+        this.EncodedContent = EncodedContent;
     }
 }

@@ -32,7 +32,7 @@ Requires:
 
 Returns:
 
-- If data is correct returns JSON response contains ``status`` (success), ``count`` - counts lines/elements in RootElement, ``encodedFormat`` - string with encoded context represented as JSON in string
+- If data is correct returns JSON response contains ``status`` (success), ``count`` - counts lines/elements in RootElement, ``encodedContent`` - string with encoded context represented as JSON in string
 - If data is incorrect returns JSON response contains ``status`` (failed), ``errorMessage`` - message of error
 
 # Configuration
