@@ -1,12 +1,10 @@
 
-using Xunit.Sdk;
-
 public class ParserRegistryTests()
 {
 
-    public AppConfiguration GetAppConfiguration()
+    public static AppConfiguration GetAppConfiguration()
     {
-        AppConfiguration appConfiguration = new AppConfiguration();
+        AppConfiguration appConfiguration = new();
         return appConfiguration;
     }
 
