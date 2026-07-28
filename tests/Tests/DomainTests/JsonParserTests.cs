@@ -65,4 +65,18 @@ public class JsonParserTests
             sut.Parse(LongJson);
         });
     }
+
+    [Fact]
+    public void DisabledMaxDepthTest() 
+    {
+        //Arrange
+        JsonParser sut = new(-1);
+        string LongJson = "{\"text\": \"Example Json\"}";
+
+        //Act
+        ParsedInfo info = sut.Parse(LongJson);
+
+        //Assert
+        Assert.NotNull(info);
+    } 
 }

@@ -7,7 +7,10 @@ public class ParseService(ParserRegistry Registry, AppConfiguration configuratio
 
     public ParsedInfo ParseEncodedContent(string ContentType, string Content)
     {
-        if(Content.Length > configuration.MaxContentSize)
+        if(
+            configuration.MaxContentSize >= 0 &&
+            Content.Length > configuration.MaxContentSize
+        )
         {
             throw new MaxContentLengthException("Content is too long!");
         } 

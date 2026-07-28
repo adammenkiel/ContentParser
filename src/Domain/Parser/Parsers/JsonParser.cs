@@ -14,11 +14,19 @@ public class JsonParser : IParser
     public ParsedInfo Parse(string content)
     {
         try {
-            var JsonOptions = new JsonDocumentOptions
+            JsonDocument Document;
+            if(JsonMaxDepth >= 0) {
+                var JsonOptions = new JsonDocumentOptions
+                {
+                  MaxDepth = JsonMaxDepth
+                };
+                Document = JsonDocument.Parse(content, JsonOptions);
+            }
+            else
             {
-              MaxDepth = JsonMaxDepth  // Move into configuration
-            };
-            JsonDocument Document = JsonDocument.Parse(content, JsonOptions);
+                Document = JsonDocument.Parse(content);    
+            }
+
             /*
                 Count method of JSON object isn't strictly defined, also as Json format
                 There are also other ways to count JSON objects, for example by DFS algorithm

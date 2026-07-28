@@ -40,6 +40,7 @@ Returns:
 - If data is incorrect returns JSON response contains ``status`` (failed), ``errorMessage`` - message of error
 
 Example:
+
 When you send ``POST /api/v1/parse-content`` with the following JSON:
 ```json
 {
@@ -58,13 +59,13 @@ You will receive this response:
 
 # Configuration
 
-Configuration files could be found at src/API/ directory:
+Configuration files could be found at /src/API directory:
 - ``appsettings.Development.json`` - An configuration file responsible for runtime in Development mode
 - ``appsettings.json`` - An configuration base file
 
 Settings:
-- ``MaxDepth`` - Setting responsible for max depth of JSON nesting
-- ``MaxContentSize`` - Setting responsible for maximum size of encoded content
+- ``MaxDepth`` - Setting responsible for max depth of JSON nesting (set -1 value disables this property)
+- ``MaxContentSize`` - Setting responsible for maximum size of encoded content (set -1 value disables this property)
 
 # Run
 
