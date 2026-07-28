@@ -1,5 +1,5 @@
 
-public class ExceptionResponse
+public class ExceptionResponse : IResponse
 {
     public string Status { get; } = "failed";
     public string ErrorMessage { get; }

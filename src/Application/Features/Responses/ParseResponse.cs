@@ -1,5 +1,5 @@
 
-public class ParseResponse
+public class ParseResponse : IResponse
 {
     public string Status { get; } = "success";
     public int Count { get; } = 0;

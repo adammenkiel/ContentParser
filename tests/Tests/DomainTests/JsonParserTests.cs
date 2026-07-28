@@ -31,23 +31,37 @@ public class JsonParserTests
         });
     }
 
-    
-    // TODO: Correct it
+    //Two tests below checks if MaxDepth property works
+    [Fact]
+    public void ParseBelowMaxDepthLimitJsonTest() 
+    {
+        //Arrange
+        JsonParser sut = new(100);
+        string LongJson = "{\"text\": \"Example Json\"}";
+        for(int i = 0; i < 49; i++)
+        {
+            LongJson = "{\"List\":[" + LongJson + "]}";
+        }
+        //Act
+        ParsedInfo info = sut.Parse(LongJson);
+
+        //Assert
+        Assert.NotNull(info);
+    }    
+
     [Fact]
     public void ParseLongJsonTest() 
     {
         //Arrange
-        JsonParser sut = new();
+        JsonParser sut = new(100);
         string LongJson = "{\"text\": \"Example Json\"}";
-        for(int i = 0; i < 1000; i++)
+        for(int i = 0; i < 50; i++)
         {
             LongJson = "{\"List\":[" + LongJson + "]}";
         }
         
         //Act & Assert
         Assert.Throws<ParseException>(() => { 
-            // I need to correct it, StackOverflowException/Max Depth Exception detection
-            // is required because of execution time!
             sut.Parse(LongJson);
         });
     }

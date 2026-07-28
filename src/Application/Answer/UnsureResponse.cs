@@ -1,7 +1,4 @@
-//Temporary maybe pattern
-//TODO: GetValue returns object; It's good to consider to refactor it
-
-public class UnsureResponse<T>
+public class UnsureResponse<T> where T : IResponse
 {
     private readonly T? Value;
     private readonly ExceptionResponse? ExceptionValue;
@@ -16,7 +13,7 @@ public class UnsureResponse<T>
         ExceptionValue = exception;
     }
 
-    public object GetValue()
+    public IResponse GetValue()
     {
         if(ExceptionValue != null) return ExceptionValue;
         if(Value != null) return Value;
