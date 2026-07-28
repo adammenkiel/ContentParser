@@ -24,7 +24,7 @@ public class JsonParserTests
     }
 
     [Fact]
-    public void ParseInvaildJsonTest()
+    public void ParseInvalidJsonTest()
     {
         //Arrange
         JsonParser sut = new();
