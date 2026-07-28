@@ -7,27 +7,27 @@ namespace Domain.Parser.Parsers;
 public class JsonParser : IParser
 {
 
-    private int JsonMaxDepth = 256;
+    private readonly int _jsonMaxDepth = 256;
     public JsonParser() {}
 
-    public JsonParser(int JsonMaxDepth)
+    public JsonParser(int jsonMaxDepth)
     {
-        this.JsonMaxDepth = JsonMaxDepth;
+        _jsonMaxDepth = jsonMaxDepth;
     }
     public ParsedInfo Parse(string content)
     {
         try {
-            JsonDocument Document;
-            if(JsonMaxDepth >= 0) {
+            JsonDocument document;
+            if(_jsonMaxDepth >= 0) {
                 var JsonOptions = new JsonDocumentOptions
                 {
-                  MaxDepth = JsonMaxDepth
+                  MaxDepth = _jsonMaxDepth
                 };
-                Document = JsonDocument.Parse(content, JsonOptions);
+                document = JsonDocument.Parse(content, JsonOptions);
             }
             else
             {
-                Document = JsonDocument.Parse(content);    
+                document = JsonDocument.Parse(content);    
             }
 
             /*
@@ -37,16 +37,16 @@ public class JsonParser : IParser
                 just elements inside Root array or return 1 if root isn't array, it could be helpful
                 for counting for example list of products and other thinks like that.
             */ 
-            int Count = Document.RootElement.ValueKind switch
+            int count = document.RootElement.ValueKind switch
             {
-                JsonValueKind.Array => Document.RootElement.GetArrayLength(),
+                JsonValueKind.Array => document.RootElement.GetArrayLength(),
                 JsonValueKind.Object => 1,
                 _ => 1
             };
 
             return new ParsedInfo(
-                Document,
-                Count
+                document,
+                count
             );
         } catch (Exception exception)
         {

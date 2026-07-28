@@ -13,24 +13,24 @@ public class ParseServiceTests
     public void TooLongContentTest()
     {
         //Arrange
-        string RawExampleContent = """
+        string rawExampleContent = """
             {"text": "Hello World"}
         """;
 
-        string EncodedExampleContext = Convert.ToBase64String(
-            Encoding.UTF8.GetBytes(RawExampleContent)
+        string encodedExampleContext = Convert.ToBase64String(
+            Encoding.UTF8.GetBytes(rawExampleContent)
         );
 
         AppConfiguration appConfiguration = new()
         {
-            MaxContentSize = EncodedExampleContext.Length - 1
+            MaxContentSize = encodedExampleContext.Length - 1
         };
         ParserRegistry registry = new(appConfiguration);
         ParseService sut = new(registry, appConfiguration);
 
         //Act & Assert
         Assert.Throws<MaxContentLengthException>(() => 
-            sut.ParseEncodedContent("INTERNAL_JSON", EncodedExampleContext)
+            sut.ParseEncodedContent("INTERNAL_JSON", encodedExampleContext)
         );  
     }
 
@@ -38,36 +38,36 @@ public class ParseServiceTests
     public void CorrectContextLengthTest()
     {
         //Arrange
-        string RawExampleContent = """
+        string rawExampleContent = """
             {"text": "Hello World"}
         """;
 
-        string EncodedExampleContext = Convert.ToBase64String(
-            Encoding.UTF8.GetBytes(RawExampleContent)
+        string encodedExampleContext = Convert.ToBase64String(
+            Encoding.UTF8.GetBytes(rawExampleContent)
         );
 
         AppConfiguration appConfiguration = new()
         {
-            MaxContentSize = EncodedExampleContext.Length
+            MaxContentSize = encodedExampleContext.Length
         };
         ParserRegistry registry = new(appConfiguration);
         ParseService sut = new(registry, appConfiguration);
 
 
         //Act & Assert
-        Assert.IsType<ParsedInfo>(sut.ParseEncodedContent("INTERNAL_JSON", EncodedExampleContext)); 
+        Assert.IsType<ParsedInfo>(sut.ParseEncodedContent("INTERNAL_JSON", encodedExampleContext)); 
     }
 
     [Fact]
     public void DisabledConfigurationOfMaxLengthContentTest()
     {
         //Arrange
-        string RawExampleContent = """
+        string rawExampleContent = """
             {"text": "Hello World"}
         """;
 
-        string EncodedExampleContext = Convert.ToBase64String(
-            Encoding.UTF8.GetBytes(RawExampleContent)
+        string encodedExampleContext = Convert.ToBase64String(
+            Encoding.UTF8.GetBytes(rawExampleContent)
         );
 
         AppConfiguration appConfiguration = new()
@@ -78,6 +78,6 @@ public class ParseServiceTests
         ParseService sut = new(registry, appConfiguration);
 
         //Act & Assert
-        Assert.IsType<ParsedInfo>(sut.ParseEncodedContent("INTERNAL_JSON", EncodedExampleContext));         
+        Assert.IsType<ParsedInfo>(sut.ParseEncodedContent("INTERNAL_JSON", encodedExampleContext));         
     }
 }

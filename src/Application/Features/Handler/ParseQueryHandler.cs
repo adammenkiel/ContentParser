@@ -18,13 +18,12 @@ public class ParseQueryHandler(ParseService parseService)
     )
     {
         try {
-            ParsedInfo info = ParseService.ParseEncodedContent(request.Type, request.Content);
-            int Count = info.Count;
-            string ContentString = info.GetContentString();
-            info.Dispose();
+            using ParsedInfo info = ParseService.ParseEncodedContent(request.Type, request.Content);
+            int count = info.Count;
+            string contentString = info.GetContentString();
 
             return new UnsureResponse<ParseResponse>(
-                new ParseResponse(Count, ContentString)
+                new ParseResponse(count, contentString)
             );
         } catch (Exception e)
         {

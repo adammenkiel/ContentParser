@@ -7,9 +7,8 @@ using Domain.Parser;
 
 namespace Application.Services;
 
-public class ParseService(ParserRegistry Registry, AppConfiguration configuration)
+public class ParseService(ParserRegistry registry, AppConfiguration configuration)
 {
-    private readonly ParserRegistry Registry = Registry;
 
     public ParsedInfo ParseEncodedContent(string ContentType, string Content)
     {
@@ -27,7 +26,7 @@ public class ParseService(ParserRegistry Registry, AppConfiguration configuratio
 
     private ParsedInfo ParseDecodedContent(string ContentType, string DecodedContent)
     {
-        IParser parser = Registry.GetParser(ContentType);
+        IParser parser = registry.GetParser(ContentType);
         return parser.Parse(DecodedContent);
     }
 }

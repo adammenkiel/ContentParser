@@ -15,13 +15,13 @@ public class CSVParserTests
         //Arrange
         CSVParser sut = new();
         string input = "a,b,c\n1,2,3\n4,5,6\n7,8,9";
-        string ExpectedResult = """[{"a":"1","b":"2","c":"3"},{"a":"4","b":"5","c":"6"},{"a":"7","b":"8","c":"9"}]""";
+        string expectedResult = """[{"a":"1","b":"2","c":"3"},{"a":"4","b":"5","c":"6"},{"a":"7","b":"8","c":"9"}]""";
 
         //Act
         ParsedInfo info = sut.Parse(input);
 
         //Assert
-        Assert.Equal(JsonSerializer.Serialize(info.JsonContent), ExpectedResult);        
+        Assert.Equal(info.GetContentString(), expectedResult);        
     }
 
     /*

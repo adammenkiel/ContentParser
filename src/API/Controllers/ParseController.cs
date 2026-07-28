@@ -8,7 +8,7 @@ namespace API.Controllers;
 
 [Route("/api/v1/parse-content")]
 [ApiController]
-public class ApiController(IMediator mediator) : ControllerBase
+public class ParseController(IMediator mediator) : ControllerBase
 {
     private readonly IMediator _mediator = mediator;
 

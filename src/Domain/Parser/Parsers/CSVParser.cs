@@ -18,7 +18,7 @@ public class CSVParser : IParser
             var names = csv.HeaderRecord;
 
             JsonArray array = [];
-            int Count = 0;
+            int count = 0;
 
             if(names == null)
                 throw new Exception("Header records are null!");
@@ -32,11 +32,11 @@ public class CSVParser : IParser
                     line[recordName] = RValue;
                 }
                 array.Add(line);
-                Count++;
+                count++;
             }
             return new ParsedInfo(
                 JsonSerializer.SerializeToDocument(array),
-                Count
+                count
             );
         } catch (Exception exception)
         {

@@ -1,11 +1,7 @@
 namespace Application.Answer;
 
-public class ExceptionResponse : IResponse
+public class ExceptionResponse(string errorMessage) : IResponse
 {
     public string Status { get; } = "failed";
-    public string ErrorMessage { get; }
-    public ExceptionResponse(string ErrorMessage)
-    {
-        this.ErrorMessage = ErrorMessage;
-    }
+    public string ErrorMessage { get; } = errorMessage;
 }

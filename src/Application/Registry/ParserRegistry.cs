@@ -6,24 +6,28 @@ using Domain.Parser.Parsers;
 namespace Application.Registry;
 public class ParserRegistry
 {
-    private AppConfiguration Configuration;
-    private Dictionary<ParserType, IParser> Parsers = new Dictionary<ParserType, IParser>();
+    private readonly AppConfiguration _configuration;
+    private readonly Dictionary<ParserType, IParser> _parsers = [];
 
+    /*
+        These parsers are just functions 
+        and don't changes states as the assumed so these classes are singletons
+    */
     private void LoadParsers()
     {
-        Parsers.Add(ParserType.CSV, new CSVParser());
-        Parsers.Add(ParserType.INTERNAL_JSON, new JsonParser(Configuration.MaxDepth));
+        _parsers.Add(ParserType.CSV, new CSVParser());
+        _parsers.Add(ParserType.INTERNAL_JSON, new JsonParser(_configuration.MaxDepth));
     }
     
-    public ParserRegistry(AppConfiguration Configuration)
+    public ParserRegistry(AppConfiguration configuration)
     {
-        this.Configuration = Configuration;
+        this._configuration = configuration;
         LoadParsers();
     }
 
     public IParser GetParser(ParserType Type)
     {
-        if(!Parsers.TryGetValue(Type, out IParser? value))
+        if(!_parsers.TryGetValue(Type, out IParser? value))
             throw new KeyNotFoundException("This type of parser not found");
         return value;
     }
