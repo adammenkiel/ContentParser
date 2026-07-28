@@ -1,4 +1,9 @@
 using System.Text.Json;
+using Domain.Error;
+using Domain.Parser;
+using Domain.Parser.Parsers;
+
+namespace Tests.DomainTests;
 
 //TODO: Compare JSONs, not string at first test below
 

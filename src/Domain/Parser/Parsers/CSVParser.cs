@@ -3,7 +3,9 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using CsvHelper;
+using Domain.Error;
 
+namespace Domain.Parser.Parsers;
 public class CSVParser : IParser
 {
     public ParsedInfo Parse(string content)

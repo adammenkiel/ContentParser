@@ -1,6 +1,10 @@
 
 using System.Text.Json;
+using Domain.Error;
+using Domain.Parser;
+using Domain.Parser.Parsers;
 
+namespace Tests.DomainTests;
 public class JsonParserTests
 {
     [Fact]

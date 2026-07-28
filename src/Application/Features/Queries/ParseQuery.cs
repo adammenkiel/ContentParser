@@ -1,4 +1,8 @@
 using MediatR;
+using Application.Answer;
+using Application.Features.Responses;
+
+namespace Application.Features.Queries;
 
 public class ParseQuery : IRequest<UnsureResponse<ParseResponse>>
 {

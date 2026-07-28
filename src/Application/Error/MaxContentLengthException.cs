@@ -1,3 +1,4 @@
+namespace Application.Error;
 
 public class MaxContentLengthException : Exception
 {

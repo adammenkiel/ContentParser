@@ -1,5 +1,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Application.Answer;
+using Application.Features.Responses;
+using Application.Features.Queries;
+
+namespace API.Controllers;
 
 [Route("/api/v1/parse-content")]
 [ApiController]

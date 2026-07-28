@@ -1,3 +1,4 @@
+namespace Application.Answer;
 
 public class ExceptionResponse : IResponse
 {

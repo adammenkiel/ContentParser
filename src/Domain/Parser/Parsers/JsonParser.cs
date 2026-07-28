@@ -1,5 +1,8 @@
 
 using System.Text.Json;
+using Domain.Error;
+
+namespace Domain.Parser.Parsers;
 
 public class JsonParser : IParser
 {

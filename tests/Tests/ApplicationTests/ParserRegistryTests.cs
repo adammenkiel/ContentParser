@@ -1,4 +1,9 @@
+using Application.Configuration;
+using Application.Registry;
+using Domain.Parser;
+using Domain.Parser.Parsers;
 
+namespace Tests.ApplicationTests;
 public class ParserRegistryTests()
 {
 

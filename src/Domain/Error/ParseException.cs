@@ -1,4 +1,5 @@
 
+namespace Domain.Error;
 public class ParseException : Exception
 {
     public ParseException()

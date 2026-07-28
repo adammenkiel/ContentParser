@@ -1,6 +1,12 @@
 
 using System.Text;
+using Application.Configuration;
+using Application.Error;
+using Application.Registry;
+using Application.Services;
+using Domain.Parser;
 
+namespace Tests.ApplicationTests;
 public class ParseServiceTests
 {
     [Fact]
@@ -51,7 +57,6 @@ public class ParseServiceTests
         //Act & Assert
         Assert.IsType<ParsedInfo>(sut.ParseEncodedContent("INTERNAL_JSON", EncodedExampleContext)); 
     }
-
 
     [Fact]
     public void DisabledConfigurationOfMaxLengthContentTest()

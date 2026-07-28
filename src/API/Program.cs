@@ -1,7 +1,13 @@
+using Application.Configuration;
+using Application.Features.Handler;
+using Application.Registry;
+using Application.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 AppConfiguration? config = 
     builder.Configuration.GetSection("AppConfiguration").Get<AppConfiguration>();
+
 if(config == null)
 {
     Console.WriteLine("Program requires Parser configuration!");

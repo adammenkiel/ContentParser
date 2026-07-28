@@ -1,3 +1,5 @@
+namespace Application.Answer;
+
 public class UnsureResponse<T> where T : IResponse
 {
     private readonly T? Value;

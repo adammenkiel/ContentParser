@@ -1,5 +1,11 @@
 
 using System.Text;
+using Application.Configuration;
+using Application.Error;
+using Application.Registry;
+using Domain.Parser;
+
+namespace Application.Services;
 
 public class ParseService(ParserRegistry Registry, AppConfiguration configuration)
 {

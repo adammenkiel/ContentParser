@@ -1,4 +1,6 @@
+using Application.Answer;
 
+namespace Application.Features.Responses;
 public class ParseResponse : IResponse
 {
     public string Status { get; } = "success";

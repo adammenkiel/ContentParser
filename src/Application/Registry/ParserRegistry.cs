@@ -1,4 +1,9 @@
 
+using Application.Configuration;
+using Domain.Parser;
+using Domain.Parser.Parsers;
+
+namespace Application.Registry;
 public class ParserRegistry
 {
     private AppConfiguration Configuration;
