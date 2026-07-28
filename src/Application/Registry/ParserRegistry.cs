@@ -21,7 +21,7 @@ public class ParserRegistry
     
     public ParserRegistry(AppConfiguration configuration)
     {
-        this._configuration = configuration;
+        _configuration = configuration;
         LoadParsers();
     }
 

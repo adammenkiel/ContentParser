@@ -6,7 +6,6 @@ using Domain.Parser.Parsers;
 namespace Tests.ApplicationTests;
 public class ParserRegistryTests()
 {
-
     public static AppConfiguration GetAppConfiguration()
     {
         AppConfiguration appConfiguration = new();

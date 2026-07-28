@@ -5,8 +5,6 @@ using Domain.Parser.Parsers;
 
 namespace Tests.DomainTests;
 
-//TODO: Compare JSONs, not string at first test below
-
 public class CSVParserTests
 {
     [Fact]
